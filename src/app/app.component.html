@@ -1,27 +1,50 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">    
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a routerLink="" routerLinkActive="active" class="nav-item nav-link" href="#">Home</a>
-            <a routerLink="/login" routerLinkActive="active" class="nav-item nav-link" href="#">Login</a>
+            <a routerLink="" 
+               routerLinkActive="active" 
+               class="nav-item nav-link" 
+               href="#">
+               Home
+            </a>
+
+            <a routerLink="/login" 
+               routerLinkActive="active" 
+               class="nav-item nav-link" 
+               href="#">
+               Login
+            </a>
 
             <a routerLink="/cursos" 
                routerLinkActive="active" 
                [queryParams]="{pagina:1}"
                class="nav-item nav-link" 
-               href="#">Cursos</a>        
-               
+               href="#">
+               Cursos
+            </a>        
+            <!--
             <a [routerLink]="['curso', idCurso.value]" 
                routerLinkActive="active" 
                class="nav-item nav-link" href="#">
                Curso com Id
             </a>        
+            -->   
+            <a routerLink="/alunos" 
+               routerLinkActive="active"                
+               class="nav-item nav-link" 
+               href="#">
+               Alunos
+            </a>
+            
         </div>
     </div>
 </nav>  
 
 <div class="container">
+    <!--
     <p>Entre com o Id do curso</p>
     <input #idCurso (input)="0">
+    -->
     <!--O componente da rota é renderizado dentro dessa tag-->
     <router-outlet></router-outlet>
 </div>
