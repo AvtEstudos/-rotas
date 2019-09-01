@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { CursosModule } from './cursos/cursos.module';
-import { AlunosModule } from './alunos/alunos.module';
+//Comentado para funcionar o lazyLoading (carregamento sob demanda)
+//import { CursosModule } from './cursos/cursos.module';
+//import { AlunosModule } from './alunos/alunos.module';
 
 @NgModule({
   declarations: [
@@ -19,8 +20,9 @@ import { AlunosModule } from './alunos/alunos.module';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CursosModule,
-    AlunosModule  
+    //Comentado para o lazyLoading (carreg. sob demanda)
+    //CursosModule,
+    //AlunosModule  
   ],  
   bootstrap: [AppComponent]
 })
