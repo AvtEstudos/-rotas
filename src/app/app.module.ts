@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './login/auth.service';
 //Comentado para funcionar o lazyLoading (carregamento sob demanda)
 //import { CursosModule } from './cursos/cursos.module';
 //import { AlunosModule } from './alunos/alunos.module';
@@ -24,6 +25,11 @@ import { LoginComponent } from './login/login.component';
     //CursosModule,
     //AlunosModule  
   ],  
-  bootstrap: [AppComponent]
+  providers: [
+    AuthService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
