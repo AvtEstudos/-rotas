@@ -1,3 +1,5 @@
+import { AuthGuard } from './guards/auth.guard';
+import { CanActivate } from '@angular/router/src/utils/preactivation';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
@@ -13,10 +15,21 @@ const routes: Routes = [
   //4. Mais ninguém pode referencia o módulo, por isso
   //   precisamos retirar CursosModule app.module.ts
   //5. Retirar cursos do módulo de rotas de cursos
-  { path: 'cursos', loadChildren: './cursos/cursos.module#CursosModule' },
-  { path: 'alunos', loadChildren: './alunos/alunos.module#AlunosModule' },
-  { path: '', component: HomeComponent  },
-  { path: 'login', component: LoginComponent }  
+  { path: 'cursos', 
+      loadChildren: './cursos/cursos.module#CursosModule',
+      canActivate: [AuthGuard]
+  },
+  { path: 'alunos', 
+      loadChildren: './alunos/alunos.module#AlunosModule',
+      canActivate: [AuthGuard] 
+  },
+  { path: '', 
+    component: HomeComponent,  
+    canActivate: [AuthGuard]
+  },
+  { path: 'login', 
+      component: LoginComponent      
+  }  
 ];
 
 @NgModule({
