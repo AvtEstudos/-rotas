@@ -1,6 +1,7 @@
+import { AlunosDeactivateGuard } from './../guards/alunos-deactivate.guards';
 import { AlunosGuard } from './../guards/alunos.guard';
 import { NgModule } from '@angular/core';
-import { RouterModule, CanActivateChild } from '@angular/router';
+import { RouterModule, CanActivateChild, CanDeactivate } from '@angular/router';
 
 import { AlunosComponent } from './alunos.component';
 import { AlunoFormComponent } from './aluno-form/aluno-form.component';
@@ -19,7 +20,8 @@ const alunosRoutes = [
             //antes das rotas com variaveis, como no caso do :id
             { path: 'novo', component: AlunoFormComponent },       //Filho
             { path: ':id', component: AlunoDetalheComponent },     //Filho
-            { path: ':id/editar', component: AlunoFormComponent }  //Filho  
+            { path: ':id/editar', component: AlunoFormComponent,   //Filho  
+                canDeactivate: [AlunosDeactivateGuard] }  
     ]}
 ]
 
