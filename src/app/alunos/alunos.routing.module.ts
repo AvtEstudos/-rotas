@@ -1,11 +1,13 @@
-import { AlunosDeactivateGuard } from './../guards/alunos-deactivate.guards';
-import { AlunosGuard } from './../guards/alunos.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, CanActivateChild, CanDeactivate } from '@angular/router';
 
 import { AlunosComponent } from './alunos.component';
 import { AlunoFormComponent } from './aluno-form/aluno-form.component';
 import { AlunoDetalheComponent } from './aluno-detalhe/aluno-detalhe.component';
+import { AlunoDetalheResolver } from './guards/aluno-detalhe.resolver';
+import { AlunosDeactivateGuard } from './../guards/alunos-deactivate.guards';
+import { AlunosGuard } from './../guards/alunos.guard';
+
 
 const alunosRoutes = [
     //  Declarando rotas filhas, interessante para permitir 
@@ -18,9 +20,11 @@ const alunosRoutes = [
         children : [ 
             //  Para evitar colisão das rotas alunos/novo vem 
             //antes das rotas com variaveis, como no caso do :id
-            { path: 'novo', component: AlunoFormComponent },       //Filho
-            { path: ':id', component: AlunoDetalheComponent },     //Filho
-            { path: ':id/editar', component: AlunoFormComponent,   //Filho  
+            { path: 'novo', component: AlunoFormComponent },     //Filho
+            { path: ':id', component: AlunoDetalheComponent,     //Filho
+                resolve: { aluno : AlunoDetalheResolver }
+            },     
+            { path: ':id/editar', component: AlunoFormComponent, //Filho  
                 canDeactivate: [AlunosDeactivateGuard] }  
     ]}
 ]

@@ -1,3 +1,4 @@
+import { AlunoDetalheResolver } from './guards/aluno-detalhe.resolver';
 import { AlunosDeactivateGuard } from './../guards/alunos-deactivate.guards';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -25,7 +26,8 @@ import { AlunoDetalheComponent } from './aluno-detalhe/aluno-detalhe.component';
     AlunosService,
     //  Deixando o escopo do Deactivate 
     //apenas no módulo de Alunos
-    AlunosDeactivateGuard    
+    AlunosDeactivateGuard,   
+    AlunoDetalheResolver 
   ]
 
 })
