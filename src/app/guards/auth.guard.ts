@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { CanActivate, 
          ActivatedRouteSnapshot, 
          RouterStateSnapshot, 
-         Router } from '@angular/router';
+         Router, 
+         CanLoad,
+         Route} from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { AuthService } from './../login/auth.service';
@@ -13,7 +15,7 @@ import { AuthService } from './../login/auth.service';
 
 //CanActivate: Esta implementação determina que a 
 //             classe é uma guarda de rota  
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanLoad {
 
   //Método a ser implementado para validação da rota
   canActivate(
@@ -21,17 +23,28 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ) : Observable<boolean> | boolean {
 
-    if (this.authService.usuarioEstaAutenticado())
-    {
-      return true;
-    }
-    this.router.navigate(['/login']);    
-    return false;
-    
+    console.log('canActivate: verificarAcesso()');
+    return this.verificarAcesso()
+
   }
 
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
+
+  private verificarAcesso(){
+   
+    if (this.authService.usuarioEstaAutenticado())
+    {
+      return true;
+    }
+    this.router.navigate(['/login']);    
+    return false;
+  }
+
+  canLoad(route: Route): Observable<boolean>|Promise<boolean>|boolean {
+    console.log('canLoad: verificarAcesso()');
+    return this.verificarAcesso()
+  }
 }
