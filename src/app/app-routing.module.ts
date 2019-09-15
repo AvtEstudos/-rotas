@@ -1,3 +1,4 @@
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { CanActivate } from '@angular/router/src/utils/preactivation';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, CanActivateChild } from '@angular/router';
@@ -28,13 +29,22 @@ const routes: Routes = [
       canActivate: [AuthGuard],
       canLoad: [AuthGuard]      
   },
-  { path: '', 
-    component: HomeComponent,  
-    canActivate: [AuthGuard]
-  },
   { path: 'login', 
       component: LoginComponent      
-  }  
+  },
+  { path: 'home', 
+      component: HomeComponent,  
+      canActivate: [AuthGuard]
+  },  
+  { path: '', 
+      redirectTo: '/home',        
+      pathMatch: 'full'
+  },  
+  //Rota para página não encontrada
+  { path: '**',
+      component: PaginaNaoEncontradaComponent,
+      canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
